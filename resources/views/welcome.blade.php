@@ -12,11 +12,11 @@
     </head>
     <body>
     <div class="container">
-                @auth
-                    <a class="btn btn-success btn-lg btn-block" role="button" href="{{ url('/commande') }}" >Commander</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-                    <a href="{{ route('register') }}">Register</a>
-                @endauth</div>
+        @auth
+            <a class="btn btn-success btn-lg btn-block" role="button" href="{{ url('/commande') }}" >Commander</a>
+        @else
+            <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('register') }}">Register</a>
+        @endauth</div>
     </body>
 </html>
