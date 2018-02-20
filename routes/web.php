@@ -20,6 +20,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'StoreController@index')->name('storeAdmin');
-Route::post('/product/create', 'StoreController@store')->name('storeProduct');
+Route::get('/admin', 'ProductController@index')->name('storeAdmin');
+Route::post('/product/create', 'ProductController@store')->name('storeProduct');
 

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Store;
+use App\Product;
 use App\Users;
 // use App\Commandes;
 
-class StoreController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        // 
+        
     }
 
     /**
@@ -37,7 +37,19 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request);
+        $product = new Product;
+
+        $product->name = $request->input('name');
+        $product->description = $request->input('detail');
+        $product->price = $request->input('price');
+
+        if(Product::where('name', $request->input('name'))->first()){
+            // return redirect('away');
+            return back()->withErrors('ce nom est deja utilisé pour un produit');
+        }
+
+        $product->save();
+        return redirect('admin');
     }
 
     /**

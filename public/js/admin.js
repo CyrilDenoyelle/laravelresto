@@ -1,35 +1,23 @@
 (function(){
 
-
 	function formVerif(){
 
+		// console.log($(".form-control"))
+
 		verif = false;
-		if (!$("#productName").val()) {
-	    	$('#productName-danger').show();
-			verif = verif||true;
-	    }else {
-	    	$('#productName-danger').css('display: none;');
-	    }
-
-	    if (!$("#priceunit").val()) {
-	    	$('#priceunit-danger').show();
-			verif = verif||true;
-	    }else {
-	    	$('#priceunit-danger').css('display: none;');
-	    }
-
-	    if (!$("#detailDescription").val()) {	
-	    	$('#detailDescription-danger').show();
-			verif = verif||true;
-	    }else {
-	    	$('#detailDescription-danger').css('display: none;');
-	    }
-
+		$(".form-control").each( function(i, e) {
+			if (!$(this).val()) {
+		    	$('#'+$(this).attr('id')+'-danger').show();
+				verif = verif||true;
+		    }else {
+		    	$('#'+$(this).attr('id')+'-danger').css('display: none;');
+		    }
+		});
+		console.log(verif);
 	    return verif;
 	}
 
 	$('#subm').on('click', function () {
-	    console.log(formVerif());
 	    if(!formVerif()){
     		$('#productsForm').submit()
 	    }
