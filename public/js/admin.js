@@ -10,6 +10,7 @@
 		    	$('#'+$(this).attr('id')+'-danger').show();
 				verif = verif||true;
 		    }else {
+		    	console.log('ok');
 		    	$('#'+$(this).attr('id')+'-danger').css('display: none;');
 		    }
 		});

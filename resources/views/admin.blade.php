@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-<div class="container containerPadd">
+<div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3 col-12 col-offset-0 ">
-            <div class="panel panel-default">
+        <div class="col-md-8 col-md-offset-2 col-12 col-offset-0 ">
+            <div class="panel panel-default ">
                 <div class="panel-heading">Add</div>
                 <div class="panel-body">
                     <form id="productsForm" action="/product/create" method="post" class="form-horizontal">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="productName">Nommer</label>
                             <div class="col-sm-10">
-                                <input id="productName" type="text" name="name" class="form-control" value="" required>
+                                <input id="productName" type="text" name="name" class="form-control" value="{{ old('name') }}"  required>
                             </div>
                         </div>
                         <div id="productName-danger" class="alert alert-danger" role="alert" hidden>
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="priceunit">Prix</label>
                             <div class="col-sm-10">
-                                <input id="priceunit" type="text" name="price" class="form-control" value="" required>
+                                <input id="priceunit" type="text" name="price" class="form-control" value="{{ old('price') }}"  required>
                             </div>
                         </div>
                         <div id="priceunit-danger" class="alert alert-danger" role="alert" hidden>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="detailDescription">Description</label>
                             <div class="col-sm-12">
-                                <textarea id="detailDescription" type="text" name="detail" class="form-control" required> </textarea>
+                                <textarea id="detailDescription" type="text" name="detail" class="form-control" required> {{ old('detail') }}</textarea>
                             </div>
                         </div>
                         <div id="detailDescription-danger" class="alert alert-danger" role="alert" hidden>
@@ -71,12 +71,32 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    <ul>
-                        <li>produi1</li>
-                        <li>produi2</li>
-                        <li>produi3</li>
-                        <li>produi4</li>
-                    </ul>
+                    <table class="table table-striped">
+                        <thead class="thead thead-light">
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Description 
+                            </th>
+                            <th>
+                                Prix/u
+                            </th>
+                        </thead>
+                        @foreach ($products as $product)
+                            <tr>
+                                <td>
+                                    {{$product->name}}
+                                </td>
+                                <td>
+                                    {{$product->description}} 
+                                </td>
+                                <td>
+                                    {{$product->price}}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>

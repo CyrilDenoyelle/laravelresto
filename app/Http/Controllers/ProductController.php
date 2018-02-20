@@ -16,17 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
+        $products = Product::all();
+        return view('admin', compact('products'));
     }
 
     /**
@@ -38,15 +29,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product;
+        // var_dump($request->input());
+        if(Product::where('name', $request->input('name'))->first()){
+            // return redirect('away');
+            return back()->withInput($request->input())
+            ->withErrors('ce nom est deja utilisé pour un produit')
+            ;
+        }
+        if(!is_int($request->input('price'))){
+            return back()->withErrors('le prix doit etre un chiffre');
+        }
 
         $product->name = $request->input('name');
         $product->description = $request->input('detail');
         $product->price = $request->input('price');
-
-        if(Product::where('name', $request->input('name'))->first()){
-            // return redirect('away');
-            return back()->withErrors('ce nom est deja utilisé pour un produit');
-        }
 
         $product->save();
         return redirect('admin');
@@ -59,17 +55,6 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
