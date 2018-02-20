@@ -11,16 +11,23 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-.container {
-	padding: 150px;
-}
+/*
+ .containerPadd {
+	padding: 100px;
+}	
+ @media (-webkit-max-device-pixel-ratio: 2) {
+	.containerPadd {
+		padding: 20px;
+	}
+}*/
+
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
     font-weight: 300;
     color: #001F3F;
-}
+} 
 
 h1 {
 	font-weight: bold;
