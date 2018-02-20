@@ -29,20 +29,25 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product;
-        // var_dump($request->input());
+
         if(Product::where('name', $request->input('name'))->first()){
-            // return redirect('away');
             return back()->withInput($request->input())
-            ->withErrors('ce nom est deja utilisé pour un produit')
+            ->withErrors('Ce nom est deja utilisé pour un produit')
             ;
         }
-        if(!is_int($request->input('price'))){
-            return back()->withErrors('le prix doit etre un chiffre');
+
+        $price = $request->input('price');
+        settype($price, "int");
+        // dump($price);
+        if($price<=0){
+            return back()->withInput($request->input())
+            ->withErrors('Le prix doit etre un chiffre (supperieur à zero)')
+            ;
         }
 
         $product->name = $request->input('name');
         $product->description = $request->input('detail');
-        $product->price = $request->input('price');
+        $product->price = $price;
 
         $product->save();
         return redirect('admin');

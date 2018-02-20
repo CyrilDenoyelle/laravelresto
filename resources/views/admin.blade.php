@@ -16,7 +16,9 @@
 
                         @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
                               {{ $errors->first() }}
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
                             </div>
                         @endif
                         
