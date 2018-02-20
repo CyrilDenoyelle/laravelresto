@@ -37,7 +37,7 @@ class ProductController extends Controller
         }
 
         $price = $request->input('price');
-        settype($price, "int");
+        settype($price, "float");
         // dump($price);
         if($price<=0){
             return back()->withInput($request->input())
@@ -47,7 +47,7 @@ class ProductController extends Controller
 
         $product->name = $request->input('name');
         $product->description = $request->input('detail');
-        $product->price = $price;
+        $product->price = number_format($price, 2, '.', '');
 
         $product->save();
         return redirect('admin');
