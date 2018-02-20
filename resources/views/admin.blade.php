@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+@endsection
+
 @section('content')
 <div class="container containerPadd">
     <div class="row">
@@ -11,21 +15,21 @@
                         {{ csrf_field() }}
 
                         @if ($errors->any())
-                            {{-- @foreach ($errors as $error) --}}
-                                <div class="alert alert-danger" role="alert">
-                                  {{ $errors->first() }}
-                                </div>
-                            {{-- @endforeach --}}
+                            <div class="alert alert-danger" role="alert">
+                              {{ $errors->first() }}
+                            </div>
                         @endif
                         
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="productName">Nommer</label>
                             <div class="col-sm-10">
-                                <input id="productName" type="text" name="name" class="form-control" value="nem au riz de pouetl" required>
+                                <input id="productName" type="text" name="name" class="form-control" value="" required>
                             </div>
                         </div>
                         <div id="productName-danger" class="alert alert-danger" role="alert" hidden>
-                          Il doit manquer quelque chose ici.
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                Il doit manquer quelque chose ici.
+                          <i class="fa fa-exclamation" aria-hidden="true"></i>
                         </div>
                         {{-- <div id="productName-success" class="alert alert-success" role="alert" hidden>
                           This is a success alert—check it out!
@@ -33,11 +37,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="priceunit">Prix</label>
                             <div class="col-sm-10">
-                                <input id="priceunit" type="text" name="price" class="form-control" value="12" required>
+                                <input id="priceunit" type="text" name="price" class="form-control" value="" required>
                             </div>
                         </div>
                         <div id="priceunit-danger" class="alert alert-danger" role="alert" hidden>
-                          Il doit manquer quelque chose ici.
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                Il doit manquer quelque chose ici.
+                          <i class="fa fa-exclamation" aria-hidden="true"></i>
                         </div>
                         {{-- <div id="priceunit-success" class="alert alert-success" role="alert" hidden>
                           This is a success alert—check it out!
@@ -45,11 +51,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="detailDescription">Description</label>
                             <div class="col-sm-12">
-                                <textarea id="detailDescription" type="text" name="detail" class="form-control" required> nem au riz de qualitee supperieure tralala et tout et tout</textarea>
+                                <textarea id="detailDescription" type="text" name="detail" class="form-control" required> </textarea>
                             </div>
                         </div>
                         <div id="detailDescription-danger" class="alert alert-danger" role="alert" hidden>
-                          Il doit manquer quelque chose ici.^
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                Il doit manquer quelque chose ici.
+                            <i class="fa fa-exclamation" aria-hidden="true"></i> 
                         </div>
                         {{-- <div id="detailDescription-success" class="alert alert-success" role="alert" hidden>
                           This is a success alert—check it out!
