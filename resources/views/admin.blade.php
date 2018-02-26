@@ -21,6 +21,11 @@
                             <i class="fa fa-exclamation" aria-hidden="true"></i>
                             </div>
                         @endif
+                        @if (session('message'))
+                            <div id="message" class="alert alert-success" role="alert" data-statut="{{ session('statut') }}">
+                                <i class="fa fa-exclamation" aria-hidden="true"></i> {{ session('message') }} <i class="fa fa-exclamation" aria-hidden="true"></i>
+                            </div>
+                        @endif
                         
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="productName">Nommer</label>
@@ -33,11 +38,9 @@
                                 Il doit manquer quelque chose ici.
                           <i class="fa fa-exclamation" aria-hidden="true"></i>
                         </div>
-                        {{-- <div id="productName-success" class="alert alert-success" role="alert" hidden>
-                          This is a success alert—check it out!
-                        </div> --}}
+                        
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="priceunit">Prix</label>
+                            <label class="control-label col-sm-2" for="priceunit">Prix <i class="fa fa-eur"></i></label>
                             <div class="col-sm-10">
                                 <input id="priceunit" type="text" name="price" class="form-control" value="{{ old('price') }}"  required>
                             </div>
@@ -47,9 +50,7 @@
                                 Il doit manquer quelque chose ici.
                           <i class="fa fa-exclamation" aria-hidden="true"></i>
                         </div>
-                        {{-- <div id="priceunit-success" class="alert alert-success" role="alert" hidden>
-                          This is a success alert—check it out!
-                        </div> --}}
+                        
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="detailDescription">Description</label>
                             <div class="col-sm-12">
@@ -61,9 +62,7 @@
                                 Il doit manquer quelque chose ici.
                             <i class="fa fa-exclamation" aria-hidden="true"></i> 
                         </div>
-                        {{-- <div id="detailDescription-success" class="alert alert-success" role="alert" hidden>
-                          This is a success alert—check it out!
-                        </div> --}}
+                        
                     </form>
                 </div>
                 <div class="panel-footer">
@@ -84,6 +83,9 @@
                             <th>
                                 Prix/u
                             </th>
+                            <th colspan="2">
+                                Actions
+                            </th>
                         </thead>
                         @foreach ($products as $product)
                             <tr>
@@ -94,7 +96,22 @@
                                     {{$product->description}} 
                                 </td>
                                 <td>
-                                    {{$product->price}}
+                                    {{$product->price}}<i class="fa fa-eur"></i>
+                                </td>
+                                <td hidden class="actionBtn-{{$product->id}}">
+                                    <a href="/product/destroy/{{$product->id}}"><i class="fa fa-check"></i></a>
+                                </td>
+                                <td hidden class="actionBtn-{{$product->id}}">
+                                    <i class="fa fa-times trash" data-id="{{$product->id}}"></i>
+                                </td>
+                                <td class="actionBtn-{{$product->id}}">
+                                    <a href="/product/update/{{$product->id}}" class="edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    {{ csrf_field() }}
+                                </td>
+                                <td class="actionBtn-{{$product->id}}">
+                                    <i class="fa fa-trash-o trash" data-id="{{$product->id}}"></i>
                                 </td>
                             </tr>
                         @endforeach

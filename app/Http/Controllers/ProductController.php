@@ -50,7 +50,10 @@ class ProductController extends Controller
         $product->price = number_format($price, 2, '.', '');
 
         $product->save();
-        return redirect('admin');
+        return redirect('admin')
+        ->with('message', 'Produit ajouté')
+        ->with('statut', 'added')
+        ;
     }
 
     /**
@@ -73,7 +76,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::where('id', '=', $id)->first();
+        $inputs = ["name" => $product->name, "price" => $product->price, "detail" => $product->description];
+        // dump($inputs);
+        $product->delete();
+        return back()
+        ->withInput($inputs)
+        ->with('message', 'Vous pouvez modifier votre ellement ici')
+        ->with('statut', 'edit')
+        ;
     }
 
     /**
@@ -84,6 +95,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::where('id', '=', $id)->first();
+        $product->delete();
+        return redirect('admin')->with('message', 'Produit supprimé');
     }
 }
