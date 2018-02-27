@@ -28,5 +28,6 @@ Route::get('/product/update/{id}', 'ProductController@update')->name('updateProd
 
 // USERS
 Route::get('/commande', 'OrderController@index')->name('order');
+Route::post('/commande/create', 'OrderController@store')->name('storeOrder');
 
 

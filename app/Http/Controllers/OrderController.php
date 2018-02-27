@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Order;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -36,7 +39,30 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $orderJson = $request->input('orderObj');
+        $requestOrder = json_decode($orderJson);
+        // dump(strlen($orderJson));
+        // dump($order);
+        if(strlen($orderJson)<=2){
+            return back()
+            ->withErrors('Il manque quelque choses dans votre commande');
+        }
+
+        $order = new Order;
+        $user = Auth::user();
+        $order->listing = $orderJson;
+        $order->creator = $user->id;
+
+        $order->save();
+        $order->users()->save($user);
+
+        return back()
+        ->with('message', 'Commande passée merci')
+        ->with('statut', 'orderOk')
+        ;
+
+
+
     }
 
     /**
