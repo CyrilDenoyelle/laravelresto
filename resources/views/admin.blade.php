@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2 col-12 col-offset-0 ">
             <div class="panel panel-default ">
-                <div class="panel-heading">Add</div>
+                <div class="panel-heading">Ajouter un produit</div>
                 <div class="panel-body">
                     <form id="productsForm" action="/product/create" method="post" class="form-horizontal">
                         {{ csrf_field() }}
@@ -62,7 +62,6 @@
                                 Il doit manquer quelque chose ici.
                             <i class="fa fa-exclamation" aria-hidden="true"></i> 
                         </div>
-                        
                     </form>
                 </div>
                 <div class="panel-footer">
@@ -70,7 +69,7 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Vos produits</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead class="thead thead-light">

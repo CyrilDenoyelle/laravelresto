@@ -24,7 +24,7 @@
                     {{ csrf_field() }}
                 </form>
 
-                <a class="btn btn-success btn-lg btn-block" role="button" href="{{ url('/commande') }}" >Commencer une commande</a>
+                
             @else
                 <a href="{{ route('login') }}">Login</a>
                 <a href="{{ route('register') }}">Register</a>

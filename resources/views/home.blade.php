@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Vous êtes connecté!
+                    <a class="btn btn-success btn-lg btn-block" role="button" href="{{ url('/commande') }}" >Commencer une commande</a>
                 </div>
             </div>
         </div>
